@@ -11,6 +11,9 @@ public class ProjacttilePool : MonoBehaviour
     public int poolSize;
     public float maxRange;
 
+
+   // public float Interval;
+
     private Queue<GameObject> projectilePool = new Queue<GameObject>();
 
     void Awake()
@@ -30,10 +33,19 @@ public class ProjacttilePool : MonoBehaviour
         }
     }
 
-    public void FireProjectile(Vector3 position, Quaternion rotation)
+
+    public void Fires()
+    {
+        StartCoroutine(FireProjectile(parentPrefab.transform.position, parentPrefab.transform.rotation));
+    }
+
+    
+    public IEnumerator FireProjectile(Vector3 position, Quaternion rotation)
     {
         if (projectilePool.Count > 0)
         {
+            yield return new WaitForSeconds(0.1f);
+
             GameObject projectile = projectilePool.Dequeue();
             projectile.transform.position = position;
             projectile.transform.rotation = rotation;
@@ -42,12 +54,13 @@ public class ProjacttilePool : MonoBehaviour
             StartCoroutine(DestroyProjectile(projectile)); // Memulai coroutine untuk menghancurkan proyektil
         }
     }
-
+    
     private IEnumerator DestroyProjectile(GameObject projectile)
     {
         yield return new WaitUntil(() => Vector3.Distance(projectile.transform.position, parentPrefab.position) > maxRange);
         ReturnProjectileToPool(projectile);
     }
+
 
     public void ReturnProjectileToPool(GameObject projectile)
     {

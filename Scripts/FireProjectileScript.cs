@@ -27,7 +27,7 @@ public class FireProjectileScript : MonoBehaviour
 
     private void fires()
     {
-        ProjacttilePool.Instance.FireProjectile(ProjacttilePool.Instance.parentPrefab.position, ProjacttilePool.Instance.parentPrefab.rotation);
+        ProjacttilePool.Instance.Fires();
     }
 
     private void OnFireStarted(InputAction.CallbackContext context)
@@ -45,8 +45,9 @@ public class FireProjectileScript : MonoBehaviour
     {
         while (isFiring)
         {
-            fires();
+            
             yield return new WaitForSeconds(fireInterval);
+            fires();
         }
     }
 }
