@@ -11,8 +11,10 @@ public class ProjacttilePool : MonoBehaviour
     public int poolSize;
     public float maxRange;
 
+    public float fireInterval;
+    private float lastFireTime = 0f;
 
-   // public float Interval;
+    // public float Interval;
 
     private Queue<GameObject> projectilePool = new Queue<GameObject>();
 
@@ -36,22 +38,29 @@ public class ProjacttilePool : MonoBehaviour
 
     public void Fires()
     {
-        StartCoroutine(FireProjectile(parentPrefab.transform.position, parentPrefab.transform.rotation));
+        //StartCoroutine(FireProjectile(parentPrefab.transform.position, parentPrefab.transform.rotation));
     }
 
     
-    public IEnumerator FireProjectile(Vector3 position, Quaternion rotation)
+    public void FireProjectile(Vector3 position, Quaternion rotation)
     {
-        if (projectilePool.Count > 0)
+        // Hitung selisih waktu sejak tembakan terakhir
+        float timeSinceLastFire = Time.time - lastFireTime;
+
+        // Jika sudah melewati interval waktu, baru bisa menembakkan proyektil lagi
+        if (timeSinceLastFire >= fireInterval)
         {
-            yield return new WaitForSeconds(0.1f);
+            lastFireTime = Time.time; // Perbarui waktu terakhir tembakan
 
-            GameObject projectile = projectilePool.Dequeue();
-            projectile.transform.position = position;
-            projectile.transform.rotation = rotation;
-            projectile.SetActive(true);
+            if (projectilePool.Count > 0)
+            {
+                GameObject projectile = projectilePool.Dequeue();
+                projectile.transform.position = position;
+                projectile.transform.rotation = rotation;
+                projectile.SetActive(true);
 
-            StartCoroutine(DestroyProjectile(projectile)); // Memulai coroutine untuk menghancurkan proyektil
+                StartCoroutine(DestroyProjectile(projectile)); // Memulai coroutine untuk menghancurkan proyektil
+            }
         }
     }
     

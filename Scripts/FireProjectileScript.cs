@@ -27,7 +27,7 @@ public class FireProjectileScript : MonoBehaviour
 
     private void fires()
     {
-        ProjacttilePool.Instance.Fires();
+        ProjacttilePool.Instance.FireProjectile(ProjacttilePool.Instance.parentPrefab.transform.position, ProjacttilePool.Instance.parentPrefab.transform.rotation);
     }
 
     private void OnFireStarted(InputAction.CallbackContext context)

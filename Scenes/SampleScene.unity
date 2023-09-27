@@ -202,8 +202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3460726778956597099, guid: b56582791b8c3534fae01c5e73de59f7, type: 3}
   parentPrefab: {fileID: 717797399}
-  poolSize: 10000
+  poolSize: 5
   maxRange: 25
+  fireInterval: 0.2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41a3bd0a253bc249ba61163786b9e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireInterval: 0.2
+  fireInterval: 0
 --- !u!114 &1771104541
 MonoBehaviour:
   m_ObjectHideFlags: 0
