@@ -1,15 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TriggerHitProjectile : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider hit)
     {
-        if (other.gameObject.tag.Equals("Enemy"))
-        {
-            other.gameObject.GetComponent<EntityData>().DecreaseHealthPoints(GameObject.FindGameObjectWithTag("Player").GetComponent<EntityData>().Attack);
 
+        if (hit.gameObject.CompareTag("Enemy"))
+        {
+
+            EntityData enemyData = hit.GetComponent<EntityData>();
+            if (enemyData != null)
+            {
+                // Pastikan ada komponen EntityData pada musuh
+                enemyData.DecreaseHealthPoints(GameObject.FindGameObjectWithTag("Player").GetComponent<EntityData>().Attack);
+            }
+
+            /*
+            AudioSource audioSource = transform.GetChild(0).GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                // Hentikan audio jika ada
+                audioSource.Stop();
+            }
+            */
+
+            StartCoroutine(ReturnObject());
         }
+        
     }
+
+
+    private IEnumerator ReturnObject()
+    {
+        
+        ProjacttilePool.Instance.ReturnProjectileToPool(gameObject);
+        yield return null;
+    }
+
 }

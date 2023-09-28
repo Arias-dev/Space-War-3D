@@ -52,6 +52,8 @@ public class ProjacttilePool : MonoBehaviour
         {
             lastFireTime = Time.time; // Perbarui waktu terakhir tembakan
 
+
+
             if (projectilePool.Count > 0)
             {
                 GameObject projectile = projectilePool.Dequeue();
@@ -75,5 +77,6 @@ public class ProjacttilePool : MonoBehaviour
     {
         projectile.SetActive(false);
         projectilePool.Enqueue(projectile);
+
     }
 }

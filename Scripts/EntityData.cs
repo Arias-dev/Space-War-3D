@@ -30,10 +30,12 @@ public class EntityData : MonoBehaviour
         Debug.Log("Current HP   :" + CurrentHp);
     }
 
+
     private IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(0.2f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //ProjacttilePool.Instance.ReturnProjectileToPool(gameObject);
+        yield return null; 
     }
 
 }
