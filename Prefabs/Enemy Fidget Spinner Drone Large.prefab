@@ -162,6 +162,7 @@ Transform:
   m_Children:
   - {fileID: 149509724930443694}
   - {fileID: 450689599626175157}
+  - {fileID: 5519989540638017976}
   m_Father: {fileID: 7485491715492483235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -175,7 +176,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.0915843
+  m_Radius: 8
   m_Height: 2.1831686
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -228,6 +229,9 @@ MonoBehaviour:
   chaseRange: 150
   attackRange: 50
   moveSpeed: 25
+  minDistanceBetweenEnemies: 0
+  changeDirectionDistance: 0
+  nearbyEnemies: []
 --- !u!82 &8292309433059252253
 AudioSource:
   m_ObjectHideFlags: 0
@@ -578,6 +582,52 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7925847869363313680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5519989540638017976}
+  - component: {fileID: 7325265150343004774}
+  m_Layer: 0
+  m_Name: Object Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5519989540638017976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925847869363313680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 450689599985615828}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7325265150343004774
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925847869363313680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8160616791307849680
 GameObject:
   m_ObjectHideFlags: 0

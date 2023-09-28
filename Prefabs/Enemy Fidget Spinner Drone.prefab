@@ -325,6 +325,7 @@ Transform:
   m_Children:
   - {fileID: 4939891675589222538}
   - {fileID: 4673615798348794769}
+  - {fileID: 1885016307398526541}
   m_Father: {fileID: 2413049847802935687}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -338,7 +339,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.0915843
+  m_Radius: 4
   m_Height: 2.1831686
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -391,6 +392,9 @@ MonoBehaviour:
   chaseRange: 150
   attackRange: 50
   moveSpeed: 25
+  minDistanceBetweenEnemies: 75
+  changeDirectionDistance: 50
+  nearbyEnemies: []
 --- !u!82 &3857645882128970041
 AudioSource:
   m_ObjectHideFlags: 0
@@ -579,6 +583,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireInterval: 1
+--- !u!1 &6763772785206967321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1885016307398526541}
+  - component: {fileID: 2910354985852148447}
+  m_Layer: 0
+  m_Name: Object Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1885016307398526541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763772785206967321}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4673615799125977840}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2910354985852148447
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763772785206967321}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7443945274390246098
 GameObject:
   m_ObjectHideFlags: 0
