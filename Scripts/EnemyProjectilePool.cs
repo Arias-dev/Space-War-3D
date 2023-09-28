@@ -8,7 +8,7 @@ public class EnemyProjectilePool : MonoBehaviour
     private Vector3 fireDirection;
     private Quaternion fireRotation;
 
-    public Transform parentPrefab;
+   
 
     private float lastFireTime = 0f;
 
@@ -23,7 +23,7 @@ public class EnemyProjectilePool : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            GameObject projectile = Instantiate(ProjectileManager.Instance.enemyProjectilePrefab, parentPrefab);
+            GameObject projectile = Instantiate(ProjectileManager.Instance.enemyProjectilePrefab);
             projectile.SetActive(false);
             projectilePool.Enqueue(projectile);
         }
