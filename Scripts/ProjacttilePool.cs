@@ -28,14 +28,21 @@ public class ProjacttilePool : MonoBehaviour
     {
         for (int i = 0; i < poolSize; i++)
         {
+            
             GameObject projectile = Instantiate(projectilePrefab);
-            projectile.SetActive(false);
-            projectilePool.Enqueue(projectile);
+
+            if (projectile.gameObject.tag.Equals("Player_Projectile"))
+            {
+                projectile.SetActive(false);
+                projectilePool.Enqueue(projectile);
+            }
         }
     }
 
     public void FireProjectile(Vector3 position, Quaternion rotation)
     {
+        
+        
         float timeSinceLastFire = Time.time - lastFireTime;
 
         if (timeSinceLastFire >= fireInterval)
@@ -45,11 +52,16 @@ public class ProjacttilePool : MonoBehaviour
             if (projectilePool.Count > 0)
             {
                 GameObject projectile = projectilePool.Dequeue();
-                projectile.transform.position = position;
-                projectile.transform.rotation = rotation;
-                projectile.SetActive(true);
 
-                StartCoroutine(DestroyProjectile(projectile));
+                
+                    projectile.transform.position = position;
+                    projectile.transform.rotation = rotation;
+                    projectile.SetActive(true);
+
+                    StartCoroutine(DestroyProjectile(projectile));
+                
+
+                
             }
         }
     }

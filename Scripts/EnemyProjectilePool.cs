@@ -24,8 +24,11 @@ public class EnemyProjectilePool : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             GameObject projectile = Instantiate(ProjectileManager.Instance.enemyProjectilePrefab);
-            projectile.SetActive(false);
-            projectilePool.Enqueue(projectile);
+            if (projectile.gameObject.tag.Equals("Enemy_Projectile"))
+            {
+                projectile.SetActive(false);
+                projectilePool.Enqueue(projectile);
+            }
         }
     }
 
@@ -53,11 +56,17 @@ public class EnemyProjectilePool : MonoBehaviour
             if (projectilePool.Count > 0)
             {
                 GameObject projectile = projectilePool.Dequeue();
-                projectile.transform.position = transform.position;
-                projectile.transform.rotation = Quaternion.LookRotation(fireDirection);
-                projectile.SetActive(true);
 
-                StartCoroutine(DestroyProjectile(projectile));
+              
+
+                    projectile.transform.position = transform.position;
+                    projectile.transform.rotation = Quaternion.LookRotation(fireDirection);
+                    projectile.SetActive(true);
+
+                    StartCoroutine(DestroyProjectile(projectile));
+                
+
+                    
             }
         }
     }
