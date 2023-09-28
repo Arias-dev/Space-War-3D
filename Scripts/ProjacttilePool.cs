@@ -7,6 +7,9 @@ public class ProjacttilePool : MonoBehaviour
     public static ProjacttilePool Instance { get; private set; }
 
     public GameObject projectilePrefab;
+    public Transform parentPrefab;
+
+
     public int poolSize;
     public float maxRange;
 
@@ -26,7 +29,7 @@ public class ProjacttilePool : MonoBehaviour
     {
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject projectile = Instantiate(projectilePrefab);
+            GameObject projectile = Instantiate(projectilePrefab, parentPrefab);
             projectile.SetActive(false);
             projectilePool.Enqueue(projectile);
         }

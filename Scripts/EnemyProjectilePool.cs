@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemyProjectilePool : MonoBehaviour
 {
     public float fireInterval;
-    public Vector3 fireDirection;
+    private Vector3 fireDirection;
+    private Quaternion fireRotation;
+
+    public Transform parentPrefab;
 
     private float lastFireTime = 0f;
 
@@ -20,7 +23,7 @@ public class EnemyProjectilePool : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-            GameObject projectile = Instantiate(ProjectileManager.Instance.enemyProjectilePrefab);
+            GameObject projectile = Instantiate(ProjectileManager.Instance.enemyProjectilePrefab, parentPrefab);
             projectile.SetActive(false);
             projectilePool.Enqueue(projectile);
         }
@@ -28,11 +31,20 @@ public class EnemyProjectilePool : MonoBehaviour
 
 
 
+
     public void FireProjectile()
     {
         float timeSinceLastFire = Time.time - lastFireTime;
 
-        fireDirection = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().transform.position;
+
+        //Check Player
+
+        if (GameObject.FindGameObjectWithTag("Player").activeInHierarchy == true)
+        {
+            fireDirection = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().transform.position;
+            fireRotation = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().transform.rotation;
+        }
+
 
         if (timeSinceLastFire >= fireInterval)
         {
