@@ -26,12 +26,9 @@ public class EnemyProjectilePool : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        FireProjectile();
-    }
 
-    void FireProjectile()
+
+    public void FireProjectile()
     {
         float timeSinceLastFire = Time.time - lastFireTime;
 

@@ -13,6 +13,8 @@ public class EnemyAI : MonoBehaviour
 
     public State currentState = State.Idle;
 
+    [SerializeField] private EnemyProjectilePool enemyProjectile;
+
     private Transform player;
     public float chaseRange;
     public float attackRange;
@@ -103,7 +105,7 @@ public class EnemyAI : MonoBehaviour
     void FireFromEnemy()
     {
 
-        ProjacttilePool.Instance.FireProjectile(transform.position, Quaternion.LookRotation(fireDirection));
+        enemyProjectile.FireProjectile();
 
     }
 }

@@ -166,6 +166,51 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4245021384999287902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6374406565670711815}
+  - component: {fileID: 8571452161751503807}
+  m_Layer: 0
+  m_Name: Projectile Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6374406565670711815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245021384999287902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8680968381316259477}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8571452161751503807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245021384999287902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: affebb3a645e6dd4db132a97cc7e9244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyProjectilePrefab: {fileID: 7994837414445620774, guid: 09032db2e42b4c04e85f95f0cf2afc73, type: 3}
 --- !u!1 &8808398044149389893
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8680968381316259477}
-  - component: {fileID: 3891793907515653069}
+  - component: {fileID: 7505571362293366371}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -228,11 +273,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6374406565670711815}
   - {fileID: 2564350990030705385}
   m_Father: {fileID: 8947244256195106031}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3891793907515653069
+--- !u!114 &7505571362293366371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,13 +287,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8891286424678026258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f9575858cb231418d87af908fa45a3, type: 3}
+  m_Script: {fileID: 11500000, guid: cd77a9a2caf41684d9658063826946d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 7994837414445620774, guid: 09032db2e42b4c04e85f95f0cf2afc73, type: 3}
-  poolSize: 5
-  maxRange: 20
   fireInterval: 0.5
+  fireDirection: {x: 0, y: 90, z: 0}
 --- !u!1 &8947244256195106024
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,11 +390,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  player: {fileID: 0}
+  enemyProjectile: {fileID: 7505571362293366371}
   chaseRange: 150
   attackRange: 100
   moveSpeed: 25
-  fireDirection: {x: 0, y: -90, z: 0}
+  fireDirection: {x: 0, y: 0, z: 0}
 --- !u!82 &684520257186746150
 AudioSource:
   m_ObjectHideFlags: 0
@@ -534,5 +578,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8680968381316259477}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
