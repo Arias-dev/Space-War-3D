@@ -21,17 +21,22 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed; // Kecepatan gerak
 
 
-    public Vector3 fireDirection; // Menentukan arah tembakan
-
+    private float randomDistance;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
+
+    private void Start()
+    {
+        randomDistance = Random.Range(50, chaseRange);
+    }
+
     void Update()
     {
-        if(player.gameObject.activeInHierarchy == true)
+        if (player.gameObject.activeInHierarchy == true)
         {
 
 
@@ -39,7 +44,7 @@ public class EnemyAI : MonoBehaviour
             {
                 case State.Idle:
                     // Logika untuk keadaan idle
-                    if (PlayerInRange(chaseRange))
+                    if (PlayerInRange(randomDistance))
                     {
                         currentState = State.Chasing;
                     }
@@ -51,7 +56,7 @@ public class EnemyAI : MonoBehaviour
                     {
                         currentState = State.Attacking;
                     }
-                    else if (!PlayerInRange(chaseRange))
+                    else if (!PlayerInRange(randomDistance))
                     {
                         currentState = State.Idle;
                     }
@@ -75,7 +80,7 @@ public class EnemyAI : MonoBehaviour
             }
 
         }
-       
+
     }
 
     bool PlayerInRange(float range)

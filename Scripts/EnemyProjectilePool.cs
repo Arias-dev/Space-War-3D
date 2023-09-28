@@ -32,6 +32,8 @@ public class EnemyProjectilePool : MonoBehaviour
     {
         float timeSinceLastFire = Time.time - lastFireTime;
 
+        fireDirection = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().transform.position;
+
         if (timeSinceLastFire >= fireInterval)
         {
             lastFireTime = Time.time;
