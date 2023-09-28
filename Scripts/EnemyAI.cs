@@ -28,22 +28,16 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
+ 
 
-    private void Start()
-    {
-        randomDistance = Random.Range(50, chaseRange);
-    }
 
-    void Update()
+    private IEnumerator EnemyAIUpdate()
     {
-        if (player.gameObject.activeInHierarchy == true)
+        while (player.gameObject.activeInHierarchy)
         {
-
-
             switch (currentState)
             {
                 case State.Idle:
-                    // Logika untuk keadaan idle
                     if (PlayerInRange(randomDistance))
                     {
                         currentState = State.Chasing;
@@ -51,7 +45,6 @@ public class EnemyAI : MonoBehaviour
                     break;
 
                 case State.Chasing:
-                    // Logika untuk keadaan chasing
                     if (PlayerInRange(attackRange))
                     {
                         currentState = State.Attacking;
@@ -67,7 +60,6 @@ public class EnemyAI : MonoBehaviour
                     break;
 
                 case State.Attacking:
-                    // Logika untuk keadaan attacking
                     if (!PlayerInRange(attackRange))
                     {
                         currentState = State.Chasing;
@@ -79,9 +71,17 @@ public class EnemyAI : MonoBehaviour
                     break;
             }
 
+            yield return null; // Memberi kesempatan pada frame berikutnya
         }
-
     }
+
+
+    void Start()
+    {
+        randomDistance = Random.Range(50, chaseRange);
+        StartCoroutine(EnemyAIUpdate());
+    }
+
 
     bool PlayerInRange(float range)
     {

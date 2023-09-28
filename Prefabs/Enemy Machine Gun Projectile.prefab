@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 3588530719109511684}
   - component: {fileID: 6296465496117919644}
   - component: {fileID: 2321792716049216582}
-  - component: {fileID: 3791619830203889153}
+  - component: {fileID: 7403216869384246839}
   m_Layer: 0
   m_Name: Enemy Machine Gun Projectile
   m_TagString: Enemy_Projectile
@@ -376,7 +376,7 @@ TrailRenderer:
   m_MinVertexDistance: 0
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &3791619830203889153
+--- !u!114 &7403216869384246839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,6 +385,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7994837414445620774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a08e0a3b095b9147a45243156d56d39, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e68b39ce9b7fb54d82dec057a2a02a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
