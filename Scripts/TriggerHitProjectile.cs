@@ -36,7 +36,7 @@ public class TriggerHitProjectile : MonoBehaviour
     {
         
         ProjacttilePool.Instance.ReturnProjectileToPool(gameObject);
-        yield return null;
+        yield return new WaitForSeconds(0.15f);
     }
 
 }

@@ -9,6 +9,8 @@ public class FireProjectileScript : MonoBehaviour
     public float fireInterval;
     bool isFiring = false;
 
+
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -28,7 +30,7 @@ public class FireProjectileScript : MonoBehaviour
     private void fires()
     {
 
-        ProjacttilePool.Instance.FireProjectile(ProjacttilePool.Instance.parentPrefab.transform.position, ProjacttilePool.Instance.parentPrefab.transform.rotation);
+        ProjacttilePool.Instance.FireProjectile(ProjacttilePool.Instance.transform.position, ProjacttilePool.Instance.transform.rotation);
     }
 
     private void OnFireStarted(InputAction.CallbackContext context)

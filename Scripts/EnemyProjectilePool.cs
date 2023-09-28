@@ -2,37 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjacttilePool : MonoBehaviour
+public class EnemyProjectilePool : MonoBehaviour
 {
-    public static ProjacttilePool Instance { get; private set; }
-
-    public GameObject projectilePrefab;
-    public int poolSize;
-    public float maxRange;
-
     public float fireInterval;
+    public Vector3 fireDirection;
+
     private float lastFireTime = 0f;
 
     private Queue<GameObject> projectilePool = new Queue<GameObject>();
 
-    void Awake()
+    void Start()
     {
-        Instance = this;
-
         InitializePool();
     }
 
     void InitializePool()
     {
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < 10; i++)
         {
-            GameObject projectile = Instantiate(projectilePrefab);
+            GameObject projectile = Instantiate(ProjectileManager.Instance.enemyProjectilePrefab);
             projectile.SetActive(false);
             projectilePool.Enqueue(projectile);
         }
     }
 
-    public void FireProjectile(Vector3 position, Quaternion rotation)
+    void Update()
+    {
+        FireProjectile();
+    }
+
+    void FireProjectile()
     {
         float timeSinceLastFire = Time.time - lastFireTime;
 
@@ -43,8 +42,8 @@ public class ProjacttilePool : MonoBehaviour
             if (projectilePool.Count > 0)
             {
                 GameObject projectile = projectilePool.Dequeue();
-                projectile.transform.position = position;
-                projectile.transform.rotation = rotation;
+                projectile.transform.position = transform.position;
+                projectile.transform.rotation = Quaternion.LookRotation(fireDirection);
                 projectile.SetActive(true);
 
                 StartCoroutine(DestroyProjectile(projectile));
@@ -52,13 +51,13 @@ public class ProjacttilePool : MonoBehaviour
         }
     }
 
-    private IEnumerator DestroyProjectile(GameObject projectile)
+    IEnumerator DestroyProjectile(GameObject projectile)
     {
-        yield return new WaitUntil(() => Vector3.Distance(projectile.transform.position, transform.position) > maxRange);
+        yield return new WaitForSeconds(2f);
         ReturnProjectileToPool(projectile);
     }
 
-    public void ReturnProjectileToPool(GameObject projectile)
+    void ReturnProjectileToPool(GameObject projectile)
     {
         projectile.SetActive(false);
         projectilePool.Enqueue(projectile);

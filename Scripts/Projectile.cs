@@ -12,11 +12,6 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
 
-        // Cek jika proyektil sudah melebihi jarak tertentu
-        //if (transform.position.z >= maxRange)
-        //{
-            // Mengembalikan proyektil ke Pool
-            //ProjacttilePool.Instance.ReturnProjectileToPool(gameObject);
-        //}
+        
     }
 }
