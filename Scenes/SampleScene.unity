@@ -726,6 +726,7 @@ GameObject:
   - component: {fileID: 1771104541}
   - component: {fileID: 1771104540}
   - component: {fileID: 1771104542}
+  - component: {fileID: 1771104543}
   m_Layer: 0
   m_Name: Player Script
   m_TagString: Player
@@ -807,6 +808,20 @@ MonoBehaviour:
   CurrentHp: 0
   Attack: 150
   Defense: 50
+--- !u!136 &1771104543
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771104538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.2910087
+  m_Height: 2.5820174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2055104446
 GameObject:
   m_ObjectHideFlags: 0
