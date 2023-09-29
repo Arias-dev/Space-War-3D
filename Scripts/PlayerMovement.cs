@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     InputAction moveAction;
 
     public float speed;
+    public float speedInput;
     public float rotationSpeed;
     public float tiltAmount;
 
@@ -24,14 +25,15 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         Vector2 direction = moveAction.ReadValue<Vector2>();
-        Vector3 movement = new Vector3(direction.x * speed, 0, direction.y * speed) * Time.deltaTime;
+        Vector3 movement = new Vector3(direction.x * speedInput, 0, direction.y * speedInput) * Time.deltaTime;
         transform.position += movement;
 
-        // Menghitung tilt (kemiringan) berdasarkan input horizontal
         float tilt = direction.x * -tiltAmount;
-
-        // Mengatur rotasi objek
         Quaternion targetRotation = Quaternion.Euler(0, 0, tilt);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // Pemain bergerak maju
+        Vector3 movementForward = transform.forward * speed * Time.deltaTime;
+        transform.position += movementForward;
     }
 }

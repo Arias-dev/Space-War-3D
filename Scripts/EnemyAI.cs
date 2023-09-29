@@ -110,11 +110,11 @@ public class EnemyAI : MonoBehaviour
 
     void ChasePlayer()
     {
-        // Menghadap ke arah pemain
-        transform.LookAt(player);
+        // Dapatkan vektor arah dari enemy
+        Vector3 moveDirection = transform.forward;
 
         // Gerak maju ke arah pemain
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        transform.position -= moveDirection * moveSpeed * Time.deltaTime;
     }
 
     void AttackPlayer()
@@ -154,5 +154,27 @@ public class EnemyAI : MonoBehaviour
     {
         // Mengubah arah haluan dengan rotasi acak
         transform.Rotate(Vector3.up, Random.Range(0, 360));
+    }
+
+    void Update()
+    {
+        // Check if enemy is beyond the bounds
+        if (transform.position.z < player.transform.position.z - 10)
+        {
+            currentState = State.Idle;
+            StartCoroutine(DisableEnemy());
+            return;
+        }
+
+        // Rest of your code...
+    }
+
+    private IEnumerator DisableEnemy()
+    {
+        // Wait for 0.5 seconds
+        yield return new WaitForSeconds(0.5f);
+
+        // Deactivate the enemy object
+        gameObject.SetActive(false);
     }
 }
