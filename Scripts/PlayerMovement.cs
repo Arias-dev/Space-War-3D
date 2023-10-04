@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.OnScreen;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float speedInput;
     public float rotationSpeed;
     public float tiltAmount;
+
+    public OnScreenStick joystick;
 
     void Start()
     {
